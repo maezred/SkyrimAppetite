@@ -40,13 +40,14 @@ public class Listeners implements Listener {
 		foodLevel += foodValue;
 
 		int maxFoodLevel = settings.getMaxFoodLevel();
+		int playerFoodLevel = player.getFoodLevel();
 
-		if (foodLevel >= maxFoodLevel) {
-			player.setFoodLevel(player.getFoodLevel() - foodValue + 1);
+		if (foodLevel >= maxFoodLevel || playerFoodLevel <= 0) {
+			player.setFoodLevel(playerFoodLevel - foodValue + 1);
 
 			foodLevel -= maxFoodLevel;
 		} else {
-			player.setFoodLevel(player.getFoodLevel() - foodValue);
+			player.setFoodLevel(playerFoodLevel - foodValue);
 		}
 
 		foodLevels.put(playerId, foodLevel);
