@@ -6,7 +6,7 @@
 
 	<groupId>net.moltendorf.Bukkit</groupId>
 	<artifactId>SkyrimAppetite</artifactId>
-	<version>1.0.0</version>
+	<version>1.2.0</version>
 
 
 	<name>${artifactId}</name>
