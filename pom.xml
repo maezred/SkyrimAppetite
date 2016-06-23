@@ -1,104 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>net.moltendorf.Bukkit</groupId>
-	<artifactId>SkyrimAppetite</artifactId>
-	<version>1.2.0</version>
-	<properties>
-		<kotlin.version>1.0.2-1</kotlin.version>
-	</properties>
+  <groupId>net.moltendorf.bukkit.skyrimappetite</groupId>
+  <artifactId>SkyrimAppetite</artifactId>
+  <version>1.2.0</version>
 
+  <name>${artifactId}</name>
+  <description>Makes you able to eat as much as you could in Skyrim!</description>
 
-	<name>${artifactId}</name>
-	<description>Makes you able to eat as much as you could in Skyrim!</description>
+  <properties>
+    <kotlin.version>1.0.2-1</kotlin.version>
+  </properties>
 
-	<build>
-		<finalName>${artifactId}</finalName>
+  <build>
+    <finalName>${artifactId}</finalName>
 
-		<resources>
-			<resource>
-				<directory>${basedir}/src/main/resources/</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
+    <resources>
+      <resource>
+        <directory>${basedir}/src/main/resources/</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
 
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.jetbrains.kotlin</groupId>
-				<artifactId>kotlin-maven-plugin</artifactId>
-				<version>${kotlin.version}</version>
-				<executions>
-					<execution>
-						<id>compile</id>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-						<configuration>
-							<sourceDirs>
-								<source>src/main/java</source>
-							</sourceDirs>
-						</configuration>
-					</execution>
-					<execution>
-						<id>test-compile</id>
-						<phase>process-test-sources</phase>
-						<goals>
-							<goal>test-compile</goal>
-						</goals>
-						<configuration>
-							<sourceDirs>
-								<source>src/test/java</source>
-							</sourceDirs>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+    <plugins>
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <version>${kotlin.version}</version>
 
-	<distributionManagement>
-		<repository>
-			<id>net.moltendorf.Bukkit</id>
-			<name>moltendorf.net</name>
-			<url>file:///${env.HOMEDRIVE}${env.HOMEPATH}\Sync\Nexus\</url>
-		</repository>
-	</distributionManagement>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <configuration>
+              <sourceDirs>
+                <source>src/main/kotlin</source>
+              </sourceDirs>
+            </configuration>
+          </execution>
+          <execution>
+            <id>test-compile</id>
+            <phase>process-test-sources</phase>
+            <goals>
+              <goal>test-compile</goal>
+            </goals>
+            <configuration>
+              <sourceDirs>
+                <source>src/test/kotlin</source>
+              </sourceDirs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
-	<repositories>
-		<repository>
-			<id>net.moltendorf.Bukkit</id>
-			<url>https://fab.moltendorf.net/nexus/</url>
-		</repository>
+  <distributionManagement>
+    <repository>
+      <id>net.moltendorf.Bukkit</id>
+      <name>moltendorf.net</name>
+      <url>file:///${env.HOME}/Sync/Nexus/</url>
+    </repository>
+  </distributionManagement>
 
-		<repository>
-			<id>spigot-repo</id>
-			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-		</repository>
-	</repositories>
+  <repositories>
+    <repository>
+      <id>net.moltendorf.Bukkit</id>
+      <url>https://fab.moltendorf.net/nexus/</url>
+    </repository>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.spigotmc</groupId>
-			<artifactId>spigot-api</artifactId>
-			<version>LATEST</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains.kotlin</groupId>
-			<artifactId>kotlin-stdlib</artifactId>
-			<version>${kotlin.version}</version>
-		</dependency>
-	</dependencies>
+    <repository>
+      <id>spigot-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.bukkit</groupId>
+      <artifactId>bukkit</artifactId>
+      <version>LATEST</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>${kotlin.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-runtime</artifactId>
+      <version>${kotlin.version}</version>
+    </dependency>
+  </dependencies>
 </project>
