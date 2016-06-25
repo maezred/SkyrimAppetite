@@ -17,12 +17,12 @@ class Settings {
   private val foodValues = mutableMapOf(
     Pair(Material.APPLE, SimpleValue(4)),
     Pair(Material.BAKED_POTATO, SimpleValue(5)),
-    //Pair(Material.BEETROOT, new SimpleValue(1)), // 1.9
-    //Pair(Material.BEETROOT_SOUP, new SimpleValue(6)), // 1.9
+    Pair(Material.BEETROOT, SimpleValue(1)),
+    Pair(Material.BEETROOT_SOUP, SimpleValue(6)),
     Pair(Material.BREAD, SimpleValue(5)),
     Pair(Material.CAKE_BLOCK, SimpleValue(2)),
     Pair(Material.CARROT_ITEM, SimpleValue(3)),
-    //Pair(Material.CHORUS_FRUIT, new SimpleValue(4)), // 1.9
+    Pair(Material.CHORUS_FRUIT, SimpleValue(4)),
     Pair(Material.COOKED_CHICKEN, SimpleValue(6)),
     Pair(Material.COOKED_FISH, ComplexValue(mapOf(
       Pair(0.toByte(), 5), // Cooked Fish
