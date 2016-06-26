@@ -29,7 +29,7 @@ class Listeners : Listener {
       player.sendMessage("In short, you must eat a ton of food now.")
     }
 
-    val settings = Settings.instance
+    val settings = GlobalSettings.instance
 
     val foodValue = settings.getFoodValue(material, data)
     foodLevel += foodValue

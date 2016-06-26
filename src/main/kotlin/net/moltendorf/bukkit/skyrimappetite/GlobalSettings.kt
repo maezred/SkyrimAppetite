@@ -10,8 +10,7 @@ import java.util.*
 
  * @author moltendorf
  */
-class Settings {
-
+class GlobalSettings {
   var enabled = true // Whether or not the plugin is enabled at all; interface mode.
 
   private val foodValues = mutableMapOf(
@@ -154,7 +153,7 @@ class Settings {
   }
 
   companion object {
-    val instance: Settings
+    val instance: GlobalSettings
       get() = SkyrimAppetite.instance!!.settings!!
   }
 }

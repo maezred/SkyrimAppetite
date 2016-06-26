@@ -4,31 +4,44 @@ import org.bukkit.plugin.java.JavaPlugin
 
 /**
  * Created by moltendorf on 2016-02-28.
+ *
+ * @author moltendorf
  */
 class SkyrimAppetite : JavaPlugin() {
-    // Variable data.
-    var listeners: Listeners? = null
-    var settings: Settings? = null
+  // Variable data.
+  lateinit var listeners: Listeners
+    private set
+  lateinit var settings: GlobalSettings
+    private set
 
-    override fun onEnable() {
-        instance = this
+  override fun onEnable() {
+    instance = this
 
-        // Construct new settings.
-        listeners = Listeners()
-        settings = Settings()
+    // Construct new settings.
+    settings = GlobalSettings()
 
-        server.pluginManager.registerEvents(listeners, this)
+    // Are we enabled?
+    enabled = settings.enabled
+
+    if (enabled) {
+      // Register listeners.
+      listeners = Listeners()
+      server.pluginManager.registerEvents(listeners, this)
+      logger.info("Enabled general listeners.")
     }
+  }
 
-    override fun onDisable() {
-        settings!!.save()
+  override fun onDisable() {
+    settings.save()
 
-        instance = null
-    }
+    enabled = false
+  }
 
-    companion object {
-        // Main instance.
-        var instance: SkyrimAppetite? = null
-            private set
-    }
+  companion object {
+    var enabled = false
+      private set
+
+    lateinit var instance: SkyrimAppetite
+      private set
+  }
 }
