@@ -17,7 +17,6 @@ class Listeners : Listener {
   val foodLevels: MutableMap<UUID, Int> = HashMap()
 
   private fun playerConsumedFood(player: Player, material: Material, data: MaterialData) {
-
     val playerId = player.uniqueId
 
     var foodLevel: Int? = foodLevels[playerId]
@@ -28,8 +27,6 @@ class Listeners : Listener {
       player.sendMessage("Since this is your first time eating food with SkyrimAppetite installed, here's how hunger works: we count how much food you've eaten; if you've eaten enough, you gain a point of hunger.")
       player.sendMessage("In short, you must eat a ton of food now.")
     }
-
-    val settings = GlobalSettings.instance
 
     val foodValue = settings.getFoodValue(material, data)
     foodLevel += foodValue

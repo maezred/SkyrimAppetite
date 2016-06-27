@@ -55,13 +55,8 @@ class GlobalSettings {
     Pair(Material.COOKED_BEEF, SimpleValue(8)))
 
   init {
-    val instance = SkyrimAppetite.instance
-    val log = instance!!.logger
-
     // Make sure the default configuration is saved.
     instance.saveDefaultConfig()
-
-    val config = instance.config
 
     enabled = config.getBoolean("enabled", enabled)
 
@@ -123,14 +118,14 @@ class GlobalSettings {
     val value = foodValues[material]
 
     if (value == null) {
-      SkyrimAppetite.instance!!.logger.warning("Config: No value specified for $material.")
+      log.warning("Config: No value specified for $material.")
 
       return 1
     } else {
       val integer = value.getValue(data)
 
       if (integer == null) {
-        SkyrimAppetite.instance!!.logger.warning("Config: No data value specified for $material.")
+        log.warning("Config: No data value specified for $material.")
 
         return 1
       } else {
@@ -140,21 +135,13 @@ class GlobalSettings {
   }
 
   fun save() {
-    val instance = SkyrimAppetite.instance
-
-    val config = instance!!.config
     val players = config.createSection("players")
 
-    for (entry in instance.listeners!!.foodLevels.entries) {
+    for (entry in instance.listeners.foodLevels.entries) {
       players.set(entry.key.toString(), entry.value)
     }
 
     instance.saveConfig()
-  }
-
-  companion object {
-    val instance: GlobalSettings
-      get() = SkyrimAppetite.instance!!.settings!!
   }
 }
 
@@ -183,7 +170,7 @@ internal class ComplexValue : Value {
       try {
         value.put(java.lang.Byte.valueOf(key), config.getInt(key, 1))
       } catch (exception: NumberFormatException) {
-        SkyrimAppetite.instance!!.logger.warning("Config: Invalid data value specified: $key.")
+        log.warning("Config: Invalid data value specified: $key.")
       }
 
     }
