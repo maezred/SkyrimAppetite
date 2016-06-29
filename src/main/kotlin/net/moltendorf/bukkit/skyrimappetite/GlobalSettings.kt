@@ -145,10 +145,6 @@ class GlobalSettings {
   }
 }
 
-internal interface Value {
-  fun getValue(data: MaterialData): Int?
-}
-
 internal class SimpleValue(private val value: Int?) : Value {
 
   override fun getValue(data: MaterialData): Int? {
