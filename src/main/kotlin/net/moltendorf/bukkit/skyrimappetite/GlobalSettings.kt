@@ -1,7 +1,6 @@
 package net.moltendorf.bukkit.skyrimappetite
 
 import org.bukkit.Material
-import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.material.MaterialData
 import java.util.*
 
@@ -24,8 +23,8 @@ class GlobalSettings {
     Pair(Material.CHORUS_FRUIT, SimpleValue(4)),
     Pair(Material.COOKED_CHICKEN, SimpleValue(6)),
     Pair(Material.COOKED_FISH, ComplexValue(mapOf(
-      Pair(0.toByte(), 5), // Cooked Fish
-      Pair(1.toByte(), 6) // Cooked Salmon
+            Pair(0.toByte(), 5), // Cooked Fish
+            Pair(1.toByte(), 6) // Cooked Salmon
     ))),
     Pair(Material.COOKED_MUTTON, SimpleValue(6)),
     Pair(Material.GRILLED_PORK, SimpleValue(8)),
@@ -42,10 +41,10 @@ class GlobalSettings {
     Pair(Material.RAW_BEEF, SimpleValue(3)),
     Pair(Material.RAW_CHICKEN, SimpleValue(2)),
     Pair(Material.RAW_FISH, ComplexValue(mapOf(
-      Pair(0.toByte(), 2), // Raw Fish
-      Pair(1.toByte(), 2), // Raw Salmon
-      Pair(2.toByte(), 1), // Clownfish
-      Pair(3.toByte(), 1) // Pufferfish
+            Pair(0.toByte(), 2), // Raw Fish
+            Pair(1.toByte(), 2), // Raw Salmon
+            Pair(2.toByte(), 1), // Clownfish
+            Pair(3.toByte(), 1) // Pufferfish
     ))),
     Pair(Material.MUTTON, SimpleValue(2)),
     Pair(Material.PORK, SimpleValue(3)),
@@ -142,41 +141,5 @@ class GlobalSettings {
     }
 
     instance.saveConfig()
-  }
-}
-
-internal interface Value {
-  fun getValue(data: MaterialData): Int?
-}
-
-internal class SimpleValue(private val value: Int?) : Value {
-
-  override fun getValue(data: MaterialData): Int? {
-    return value
-  }
-}
-
-internal class ComplexValue : Value {
-  private val value: Map<Byte, Int>
-
-  constructor(value: Map<Byte, Int>) {
-    this.value = value
-  }
-
-  constructor(config: ConfigurationSection) {
-    value = HashMap<Byte, Int>()
-
-    for (key in config.getKeys(false)) {
-      try {
-        value.put(java.lang.Byte.valueOf(key), config.getInt(key, 1))
-      } catch (exception: NumberFormatException) {
-        log.warning("Config: Invalid data value specified: $key.")
-      }
-
-    }
-  }
-
-  override fun getValue(data: MaterialData): Int? {
-    return value[data.data]
   }
 }
