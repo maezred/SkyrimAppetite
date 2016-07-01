@@ -27,7 +27,7 @@ class SkyrimAppetite : JavaPlugin() {
       // Register listeners.
       listeners = Listeners()
       server.pluginManager.registerEvents(listeners, this)
-      logger.info("Enabled general listeners.")
+      log.info("Enabled general listeners.")
     }
   }
 

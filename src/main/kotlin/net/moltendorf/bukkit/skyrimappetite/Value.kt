@@ -2,6 +2,6 @@ package net.moltendorf.bukkit.skyrimappetite
 
 import org.bukkit.material.MaterialData
 
-internal interface Value {
+interface Value {
   fun getValue(data: MaterialData): Int?
 }

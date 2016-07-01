@@ -12,6 +12,8 @@ import java.util.*
 class GlobalSettings {
   var enabled = true // Whether or not the plugin is enabled at all; interface mode.
 
+  val maxFoodLevel = 10
+
   private val foodValues = mutableMapOf(
     Pair(Material.APPLE, SimpleValue(4)),
     Pair(Material.BAKED_POTATO, SimpleValue(5)),
@@ -23,8 +25,8 @@ class GlobalSettings {
     Pair(Material.CHORUS_FRUIT, SimpleValue(4)),
     Pair(Material.COOKED_CHICKEN, SimpleValue(6)),
     Pair(Material.COOKED_FISH, ComplexValue(mapOf(
-            Pair(0.toByte(), 5), // Cooked Fish
-            Pair(1.toByte(), 6) // Cooked Salmon
+      Pair(0.toByte(), 5), // Cooked Fish
+      Pair(1.toByte(), 6) // Cooked Salmon
     ))),
     Pair(Material.COOKED_MUTTON, SimpleValue(6)),
     Pair(Material.GRILLED_PORK, SimpleValue(8)),
@@ -41,10 +43,10 @@ class GlobalSettings {
     Pair(Material.RAW_BEEF, SimpleValue(3)),
     Pair(Material.RAW_CHICKEN, SimpleValue(2)),
     Pair(Material.RAW_FISH, ComplexValue(mapOf(
-            Pair(0.toByte(), 2), // Raw Fish
-            Pair(1.toByte(), 2), // Raw Salmon
-            Pair(2.toByte(), 1), // Clownfish
-            Pair(3.toByte(), 1) // Pufferfish
+      Pair(0.toByte(), 2), // Raw Fish
+      Pair(1.toByte(), 2), // Raw Salmon
+      Pair(2.toByte(), 1), // Clownfish
+      Pair(3.toByte(), 1) // Pufferfish
     ))),
     Pair(Material.MUTTON, SimpleValue(2)),
     Pair(Material.PORK, SimpleValue(3)),
@@ -82,19 +84,17 @@ class GlobalSettings {
         } catch (exception: IllegalArgumentException) {
           log.warning("Config: Invalid material $key specified.")
         }
-
       }
     }
 
     val players = config.getConfigurationSection("players")
 
     if (players != null) {
-      val foodLevels = instance.listeners!!.foodLevels
+      val foodLevels = instance.listeners.foodLevels
 
       for (key in players.getKeys(false)) {
         try {
           val playerId = UUID.fromString(key)
-
           val foodLevel = players.getInt(key, -1)
 
           if (foodLevel >= 0) {
@@ -109,9 +109,6 @@ class GlobalSettings {
       }
     }
   }
-
-  val maxFoodLevel: Int
-    get() = 10
 
   fun getFoodValue(material: Material, data: MaterialData): Int {
     val value = foodValues[material]

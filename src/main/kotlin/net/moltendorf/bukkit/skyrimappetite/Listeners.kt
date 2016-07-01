@@ -18,8 +18,10 @@ class Listeners : Listener {
 
   private fun playerConsumedFood(player: Player, material: Material, data: MaterialData) {
     val playerId = player.uniqueId
-
     var foodLevel: Int? = foodLevels[playerId]
+    val foodValue = settings.getFoodValue(material, data)
+    val maxFoodLevel = settings.maxFoodLevel
+    val playerFoodLevel = player.foodLevel
 
     if (foodLevel == null) {
       foodLevel = 0
@@ -28,18 +30,14 @@ class Listeners : Listener {
       player.sendMessage("In short, you must eat a ton of food now.")
     }
 
-    val foodValue = settings.getFoodValue(material, data)
     foodLevel += foodValue
 
-    val maxFoodLevel = settings.maxFoodLevel
-    val playerFoodLevel = player.foodLevel
-
     if (foodLevel >= maxFoodLevel || playerFoodLevel <= 0) {
-      player.foodLevel = playerFoodLevel - foodValue!! + 1
+      player.foodLevel = playerFoodLevel - foodValue + 1
 
       foodLevel -= maxFoodLevel
     } else {
-      player.foodLevel = playerFoodLevel - foodValue!!
+      player.foodLevel = playerFoodLevel - foodValue
     }
 
     foodLevels.put(playerId, foodLevel)
@@ -54,15 +52,12 @@ class Listeners : Listener {
 
   @EventHandler(priority = EventPriority.MONITOR)
   fun playerInteractEventMonitor(event: PlayerInteractEvent) {
-    val block = event.clickedBlock
+    val block = event.clickedBlock ?: return
+    val material = block.type
+    val player = event.player
 
-    if (block != null) {
-      val material = block.type
-      val player = event.player
-
-      if (material == Material.CAKE_BLOCK && player.foodLevel < 20) {
-        playerConsumedFood(player, material, material.getNewData(0.toByte()))
-      }
+    if (material == Material.CAKE_BLOCK && player.foodLevel < 20) {
+      playerConsumedFood(player, material, material.getNewData(0.toByte()))
     }
   }
 }
