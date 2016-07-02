@@ -1,1 +1,5 @@
+maxFoodLevel: 10
+
 enabled: true
+
+version: 1

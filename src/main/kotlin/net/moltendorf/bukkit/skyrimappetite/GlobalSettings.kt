@@ -11,8 +11,9 @@ import java.util.*
  */
 class GlobalSettings {
   var enabled = true // Whether or not the plugin is enabled at all; interface mode.
+  var version = 0
 
-  val maxFoodLevel = 10
+  var maxFoodLevel = 10
 
   private val foodValues = mutableMapOf(
     Pair(Material.APPLE, SimpleValue(4)),
@@ -60,6 +61,9 @@ class GlobalSettings {
     instance.saveDefaultConfig()
 
     enabled = config.getBoolean("enabled", enabled)
+    version = config.getInt("version", version)
+
+    maxFoodLevel = config.getInt("maxFoodLevel", maxFoodLevel)
 
     val foodsSection = config.getConfigurationSection("foods")
 
@@ -105,7 +109,6 @@ class GlobalSettings {
         } catch (exception: IllegalArgumentException) {
           log.warning("Config: Invalid UUID $key.")
         }
-
       }
     }
   }
