@@ -75,7 +75,6 @@
       <id>net.moltendorf.Bukkit</id>
       <url>https://fab.moltendorf.net/nexus/</url>
     </repository>
-
     <repository>
       <id>spigot-repo</id>
       <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
@@ -86,7 +85,7 @@
     <dependency>
       <groupId>org.bukkit</groupId>
       <artifactId>bukkit</artifactId>
-      <version>LATEST</version>
+      <version>1.9-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
