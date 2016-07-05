@@ -13,7 +13,7 @@
   <description>Makes you able to eat as much as you could in Skyrim!</description>
 
   <properties>
-    <kotlin.version>1.0.2-1</kotlin.version>
+    <kotlin.version>1.0.3</kotlin.version>
   </properties>
 
   <build>
