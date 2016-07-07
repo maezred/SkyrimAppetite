@@ -1,5 +1,6 @@
 package net.moltendorf.bukkit.skyrimappetite
 
+import net.moltendorf.bukkit.skyrimappetite.settings.GlobalSettings
 import org.bukkit.Server
 import org.bukkit.configuration.Configuration
 import org.bukkit.scheduler.BukkitScheduler

@@ -1,5 +1,6 @@
-package net.moltendorf.bukkit.skyrimappetite
+package net.moltendorf.bukkit.skyrimappetite.settings
 
+import net.moltendorf.bukkit.skyrimappetite.log
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.material.MaterialData
 import java.util.*

@@ -1,5 +1,10 @@
-package net.moltendorf.bukkit.skyrimappetite
+package net.moltendorf.bukkit.skyrimappetite.settings
 
+import net.moltendorf.bukkit.skyrimappetite.config
+import net.moltendorf.bukkit.skyrimappetite.instance
+import net.moltendorf.bukkit.skyrimappetite.log
+import net.moltendorf.bukkit.skyrimappetite.settings.ComplexValue
+import net.moltendorf.bukkit.skyrimappetite.settings.SimpleValue
 import org.bukkit.Material
 import org.bukkit.material.MaterialData
 import java.util.*
@@ -26,8 +31,8 @@ class GlobalSettings {
     Pair(Material.CHORUS_FRUIT, SimpleValue(4)),
     Pair(Material.COOKED_CHICKEN, SimpleValue(6)),
     Pair(Material.COOKED_FISH, ComplexValue(mapOf(
-      Pair(0.toByte(), 5), // Cooked Fish
-      Pair(1.toByte(), 6) // Cooked Salmon
+            Pair(0.toByte(), 5), // Cooked Fish
+            Pair(1.toByte(), 6) // Cooked Salmon
     ))),
     Pair(Material.COOKED_MUTTON, SimpleValue(6)),
     Pair(Material.GRILLED_PORK, SimpleValue(8)),
@@ -44,10 +49,10 @@ class GlobalSettings {
     Pair(Material.RAW_BEEF, SimpleValue(3)),
     Pair(Material.RAW_CHICKEN, SimpleValue(2)),
     Pair(Material.RAW_FISH, ComplexValue(mapOf(
-      Pair(0.toByte(), 2), // Raw Fish
-      Pair(1.toByte(), 2), // Raw Salmon
-      Pair(2.toByte(), 1), // Clownfish
-      Pair(3.toByte(), 1) // Pufferfish
+            Pair(0.toByte(), 2), // Raw Fish
+            Pair(1.toByte(), 2), // Raw Salmon
+            Pair(2.toByte(), 1), // Clownfish
+            Pair(3.toByte(), 1) // Pufferfish
     ))),
     Pair(Material.MUTTON, SimpleValue(2)),
     Pair(Material.PORK, SimpleValue(3)),

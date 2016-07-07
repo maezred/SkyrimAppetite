@@ -1,5 +1,6 @@
 package net.moltendorf.bukkit.skyrimappetite
 
+import net.moltendorf.bukkit.skyrimappetite.settings.GlobalSettings
 import org.bukkit.plugin.java.JavaPlugin
 
 /**
