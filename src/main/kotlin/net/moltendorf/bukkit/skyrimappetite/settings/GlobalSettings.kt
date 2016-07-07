@@ -18,7 +18,7 @@ class GlobalSettings {
   var enabled = true // Whether or not the plugin is enabled at all; interface mode.
   var version = 0
 
-  var maxFoodLevel = 10
+  var foodMultiplier = 4.0 // Multiplies required amount of food to get full.
 
   private val foodValues = mutableMapOf(
     Pair(Material.APPLE, SimpleValue(4)),
@@ -68,7 +68,7 @@ class GlobalSettings {
     enabled = config.getBoolean("enabled", enabled)
     version = config.getInt("version", version)
 
-    maxFoodLevel = config.getInt("maxFoodLevel", maxFoodLevel)
+    foodMultiplier = config.getDouble("foodMultiplier", foodMultiplier)
 
     val foodsSection = config.getConfigurationSection("foods")
 

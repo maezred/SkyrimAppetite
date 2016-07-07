@@ -20,7 +20,7 @@ class Listeners : Listener {
     val playerId = player.uniqueId
     var foodLevel: Int? = foodLevels[playerId]
     val foodValue = settings.getFoodValue(material, data)
-    val maxFoodLevel = settings.maxFoodLevel
+    val foodMultiplier = settings.foodMultiplier
     val playerFoodLevel = player.foodLevel
 
     if (foodLevel == null) {
@@ -32,10 +32,12 @@ class Listeners : Listener {
 
     foodLevel += foodValue
 
-    if (foodLevel >= maxFoodLevel || playerFoodLevel <= 0) {
-      player.foodLevel = playerFoodLevel - foodValue + 1
+    if (foodLevel >= foodMultiplier || playerFoodLevel <= 0) {
+      val foodPoints = (foodLevel / foodMultiplier).toInt()
 
-      foodLevel -= maxFoodLevel
+      player.foodLevel = playerFoodLevel - foodValue + foodPoints
+
+      foodLevel -= (foodLevel % foodMultiplier).toInt()
     } else {
       player.foodLevel = playerFoodLevel - foodValue
     }
