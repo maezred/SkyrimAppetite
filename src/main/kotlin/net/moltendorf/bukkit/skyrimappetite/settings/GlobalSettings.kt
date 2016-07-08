@@ -3,8 +3,6 @@ package net.moltendorf.bukkit.skyrimappetite.settings
 import net.moltendorf.bukkit.skyrimappetite.config
 import net.moltendorf.bukkit.skyrimappetite.instance
 import net.moltendorf.bukkit.skyrimappetite.log
-import net.moltendorf.bukkit.skyrimappetite.settings.ComplexValue
-import net.moltendorf.bukkit.skyrimappetite.settings.SimpleValue
 import org.bukkit.Material
 import org.bukkit.material.MaterialData
 import java.util.*
