@@ -17,6 +17,7 @@ class GlobalSettings {
   var version = 0
 
   var foodMultiplier = 4.0 // Multiplies required amount of food to get full.
+  var foodMidpoint = 6 // Minecraft normally considers half as half, but this moves the half to the right 4 (2 visibly) points.
 
   private val foodValues = mutableMapOf(
     Pair(Material.APPLE, SimpleValue(4)),
