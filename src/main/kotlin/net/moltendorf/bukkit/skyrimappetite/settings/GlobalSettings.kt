@@ -19,6 +19,8 @@ class GlobalSettings {
   var foodMultiplier = 4.0 // Multiplies required amount of food to get full.
   var foodMidpoint = 6 // Minecraft normally considers half as half, but this moves the half to the right 4 (2 visibly) points.
 
+  val foodLevels: MutableMap<UUID, Int> = HashMap()
+
   private val foodValues = mutableMapOf(
     Pair(Material.APPLE, SimpleValue(4)),
     Pair(Material.BAKED_POTATO, SimpleValue(5)),
@@ -98,8 +100,6 @@ class GlobalSettings {
     val players = config.getConfigurationSection("players")
 
     if (players != null) {
-      val foodLevels = instance.listeners.foodLevels
-
       for (key in players.getKeys(false)) {
         try {
           val playerId = UUID.fromString(key)
@@ -140,9 +140,9 @@ class GlobalSettings {
   fun save() {
     val players = config.createSection("players")
 
-    for (entry in instance.listeners.foodLevels.entries) {
+    for (entry in foodLevels.entries) {
       players.set(entry.key.toString(), entry.value)
-    }
+  }
 
     instance.saveConfig()
   }

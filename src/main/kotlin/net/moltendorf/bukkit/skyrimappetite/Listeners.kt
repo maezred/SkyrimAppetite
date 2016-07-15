@@ -8,17 +8,14 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerItemConsumeEvent
 import org.bukkit.material.MaterialData
-import java.util.*
 
 /**
  * Created by moltendorf on 2016-02-28.
  */
 class Listeners : Listener {
-  val foodLevels: MutableMap<UUID, Int> = HashMap()
-
   private fun playerConsumedFood(player: Player, material: Material, data: MaterialData) {
     val playerId = player.uniqueId
-    var foodLevel: Int? = foodLevels[playerId]
+    var foodLevel: Int? = settings.foodLevels[playerId]
     val foodValue = settings.getFoodValue(material, data)
     val playerFoodLevel = player.foodLevel
     val statusMultiplier = if (playerFoodLevel >= settings.foodMidpoint) 10 / settings.foodMidpoint else settings.foodMidpoint / 10
@@ -43,7 +40,7 @@ class Listeners : Listener {
       player.foodLevel = playerFoodLevel - foodValue
     }
 
-    foodLevels.put(playerId, foodLevel)
+    settings.foodLevels.put(playerId, foodLevel)
   }
 
   @EventHandler(priority = EventPriority.MONITOR)
