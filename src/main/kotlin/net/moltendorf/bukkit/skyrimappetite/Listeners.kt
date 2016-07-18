@@ -40,7 +40,7 @@ class Listeners : Listener {
       player.foodLevel = playerFoodLevel - foodValue
     }
 
-    settings.foodLevels.put(playerId, foodLevel)
+    settings.foodLevels[playerId] = foodLevel
   }
 
   @EventHandler(priority = EventPriority.MONITOR)
